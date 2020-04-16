@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <title>Rock Paper Scissors</title>
+    </head>
+    <body>
+        <div class="div1">
+          <input type="button" onclick="playGame()" class="button" value="Let's Play">
+      </div>
+    </body>
+    <script>
+
+      //The main game function activated when clicking the button on the screen.
+      function playGame(){    
+          let pScore=0, cScore=0; draw=0;
+  
+          //Generating computer pick.
+          function compPlay(){
+              let options=['rock','paper','scissors'];
+              let choice=options[Math.floor(Math.random()*options.length)];
+              return choice;
+          }
+          //Playing one round.
+          function playRound(player,computer){
+              
+              let outcome='';
+              if        (player=='rock' && computer=='paper') {
+                         outcome="Paper beats rock, you lost! ";
+                          cScore++;
+              } else if (player=='rock' && computer=='scissors') {
+                         outcome="Rock beats scissors, you won! ";
+                          pScore++;
+              } else if (player=='paper' && computer=='scissors') {
+                         outcome="Scissors cut paper, you lost! ";
+                          cScore++;
+              }  else if (player=='paper' && computer=='rock') {
+                         outcome="Paper beats rock, you won! ";
+                          pScore++;
+              }  else if (player=='scissors' && computer=='paper') {
+                         outcome="Scissors beat paper, you won! ";
+                          pScore++
+              }  else if (player=='scissors' && computer=='rock') {
+                         outcome="Rock beats scissors, you lost! ";
+                          cScore++;
+              }  else if (player!=='scissors' && player!=='rock' && player!=='rock') {
+                          outcome='No value was given'
+              }else {   
+                  outcome='TIE!'
+                  
+              }
+              return outcome;
+              
+          }
+          
+          //Playing the game in a loop for 5 rounds.        
+          for (i=1; i<=5; i++) {
+          let player=prompt('Choose: Rock, Paper, Scissors').toLowerCase(); //your pick
+          computer=compPlay(); //computer random choice    
+          alert('ROUND '+i+'! Computer picked "'+computer+'". '+playRound(player,computer)); //alert to show who won each round if any
+      }
+      //Declaring the winner or draw.
+      if (pScore>cScore) {
+          alert('You won with '+pScore+' points!')
+      } else if (cScore>pScore) {
+          alert('And the winner is computer with '+cScore+ ' points!')
+      } else {
+          alert('Its a darn DRAW!')
+      }
+      //alert(pScore+', '+cScore); //both scores
+  }
+    </script>
+  
+  </html>
